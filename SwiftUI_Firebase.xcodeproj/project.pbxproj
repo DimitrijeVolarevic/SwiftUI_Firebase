@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B792A10129EE9BEF0019D31E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B792A10029EE9BEF0019D31E /* SettingsView.swift */; };
 		B7D45E0829EE6EA1006FDC6C /* SwiftUI_FirebaseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D45E0729EE6EA1006FDC6C /* SwiftUI_FirebaseApp.swift */; };
 		B7D45E0A29EE6EA1006FDC6C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7D45E0929EE6EA1006FDC6C /* ContentView.swift */; };
 		B7D45E0C29EE6EA2006FDC6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7D45E0B29EE6EA2006FDC6C /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B792A10029EE9BEF0019D31E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		B7D45E0429EE6EA1006FDC6C /* SwiftUI_Firebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_Firebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7D45E0729EE6EA1006FDC6C /* SwiftUI_FirebaseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_FirebaseApp.swift; sourceTree = "<group>"; };
 		B7D45E0929EE6EA1006FDC6C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				B7D45E2029EE7963006FDC6C /* AuthenticationView.swift */,
 				B7D45E2229EE7A4B006FDC6C /* SignInEmailView.swift */,
 				B7D45E2429EE7C47006FDC6C /* AuthenticationManager.swift */,
+				B792A10029EE9BEF0019D31E /* SettingsView.swift */,
 				B7D45E2629EE80F0006FDC6C /* RootView.swift */,
 			);
 			path = Authentication;
@@ -183,6 +186,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B792A10129EE9BEF0019D31E /* SettingsView.swift in Sources */,
 				B7D45E0A29EE6EA1006FDC6C /* ContentView.swift in Sources */,
 				B7D45E0829EE6EA1006FDC6C /* SwiftUI_FirebaseApp.swift in Sources */,
 				B7D45E2729EE80F0006FDC6C /* RootView.swift in Sources */,
