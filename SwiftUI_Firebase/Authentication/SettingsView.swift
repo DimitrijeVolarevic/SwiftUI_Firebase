@@ -11,11 +11,16 @@ import SwiftUI
 final class SettingsViewModel: ObservableObject {
     
     @Published var authProviders: [AuthProviderOption] = []
+    @Published var authUser: AuthDataResultModel? = nil
     
     func loadAuthProviders() {
         if let providers = try? AuthenticationManager.shared.getProviders() {
             authProviders = providers
         }
+    }
+    
+    func loadAuthUser() {
+        self.authUser = try? AuthenticationManager.shared.getAuthenticateUser()
     }
     
     
@@ -36,6 +41,20 @@ final class SettingsViewModel: ObservableObject {
     func updatePassword() async throws {
         let password = "Dimitrije" // u pravim aplikacijama ubacicemo logiku da preuzimamo sta korisnik ukuca za svoj update paswword
         try await AuthenticationManager.shared.updatePassword(password: password)
+    }
+    
+    
+    func linkGoogleAccount() async throws {
+        let helper = SignInGoogleHelper()
+        let tokens = try await helper.signIn()
+        self.authUser = try await AuthenticationManager.shared.linkGoogle(tokens: tokens)
+        
+    }
+    
+    func linkEmailAccount() async throws {
+        let email = "test111@gmail.com"
+        let password = "Dimitrije"
+        self.authUser = try await AuthenticationManager.shared.linkEmail(email: email, password: password)
     }
 }
 
@@ -63,9 +82,14 @@ struct SettingsView: View {
                 passwordSection
             }
             
+            if ((viewModel.authUser?.isAnonymous) == true) {
+                anonymousSection
+            }
+            
         }
         .onAppear {
             viewModel.loadAuthProviders()
+            viewModel.loadAuthUser()
         }
         .navigationTitle("Settings")
     }
@@ -105,6 +129,34 @@ extension SettingsView {
             }
         } header: {
             Text("Password section")
+        }
+    }
+    
+    private var anonymousSection: some View {
+        Section {
+            Button("Link Google Account") {
+                Task {
+                    do {
+                        try await viewModel.linkGoogleAccount()
+                        print("GOOGLE LINKED!")
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+            
+            Button("Link Email Account") {
+                Task {
+                    do {
+                        try await viewModel.linkEmailAccount()
+                        print("EMAIL LINKED!")
+                    } catch {
+                        print(error)
+                    }
+                }
+            }
+        } header: {
+            Text("Create Account")
         }
     }
 }

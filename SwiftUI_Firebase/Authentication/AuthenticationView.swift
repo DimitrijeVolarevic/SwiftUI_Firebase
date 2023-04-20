@@ -19,6 +19,11 @@ final class AuthenticationViewModel: ObservableObject {
 
         }
     
+    func signInAnonymously() async throws {
+        try await AuthenticationManager.shared.signInAnonimously()
+
+    }
+    
 }
 
 struct AuthenticationView: View {
@@ -28,6 +33,26 @@ struct AuthenticationView: View {
     
     var body: some View {
         VStack {
+            
+            Button {
+                Task {
+                    do {
+                        try await viewModel.signInAnonymously()
+                        showSignInView = false
+                    } catch {
+                        print(error)
+                    }
+                }
+            } label: {
+                Text("Sign In Anonymously")
+                    .font(.headline)
+                    .foregroundColor(.white)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.orange)
+                    .cornerRadius(15)
+            }
+            
             NavigationLink {
                 SignInEmailView(showSignInView: $showSignInView)
             } label: {
